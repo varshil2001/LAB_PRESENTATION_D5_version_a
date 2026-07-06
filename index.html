@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Legal Aspects of Business — Clickwrap Contracts | Group D5</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --ink:#1B2A41;
+    --ink-soft:#33465f;
+    --paper:#ECE7D9;
+    --paper-2:#F7F4EB;
+    --oxblood:#7A2E2E;
+    --oxblood-dark:#5A2020;
+    --gray:#6b6b60;
+    --line:#d3ccb9;
+    --serif-display:'Spectral', serif;
+    --serif-body:'Source Serif 4', serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif-body);
+    line-height:1.7;
+  }
+  a{ color:var(--oxblood); }
+
+  /* ===== Letterhead ===== */
+  .letterhead{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 6vw;
+    border-bottom:1px solid var(--line);
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gray);
+  }
+  .letterhead strong{ color:var(--ink); }
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    padding:9vh 6vw 8vh;
+    max-width:980px;
+    margin:0 auto;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--oxblood);
+    margin:0 0 18px;
+  }
+  .hero h1{
+    font-family:var(--serif-display);
+    font-weight:600;
+    font-size:clamp(2.4rem, 5.4vw, 4.2rem);
+    line-height:1.06;
+    margin:0 0 20px;
+    letter-spacing:-0.01em;
+  }
+  .hero .sub{
+    font-family:var(--serif-display);
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1.1rem, 2vw, 1.4rem);
+    color:var(--ink-soft);
+    margin:0 0 36px;
+    max-width:640px;
+  }
+  .docket{
+    display:flex;
+    flex-wrap:wrap;
+    gap:32px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--gray);
+    border-top:1px solid var(--line);
+    padding-top:20px;
+  }
+  .docket div span{
+    display:block;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    font-size:10px;
+    color:var(--gray);
+    margin-bottom:4px;
+  }
+  .docket div strong{
+    color:var(--ink);
+    font-size:13px;
+    font-weight:600;
+  }
+
+  /* Seal */
+  .seal{
+    position:absolute;
+    top:9vh;
+    right:6vw;
+    width:120px;
+    height:120px;
+  }
+  @media (max-width:760px){ .seal{ display:none; } }
+
+  /* ===== Articles ===== */
+  .article{
+    max-width:980px;
+    margin:0 auto;
+    padding:6vh 6vw;
+    border-top:1px solid var(--line);
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .article.in-view{ opacity:1; transform:translateY(0); }
+
+  .article-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:28px;
+  }
+  .article-num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--oxblood);
+    border:1px solid var(--oxblood);
+    border-radius:2px;
+    padding:2px 8px;
+    white-space:nowrap;
+  }
+  .article-head h2{
+    font-family:var(--serif-display);
+    font-weight:600;
+    font-size:clamp(1.4rem, 2.6vw, 1.9rem);
+    margin:0;
+  }
+
+  .article p.lede{
+    color:var(--ink-soft);
+    font-size:1.05rem;
+    max-width:680px;
+    margin:0 0 32px;
+  }
+
+  /* Prerequisites list */
+  .clauses{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    gap:0;
+    border-top:1px solid var(--line);
+  }
+  .clauses li{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:20px;
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .clauses .n{
+    font-family:var(--mono);
+    color:var(--oxblood);
+    font-size:13px;
+    padding-top:2px;
+  }
+  .clauses h3{
+    font-family:var(--serif-body);
+    font-weight:600;
+    font-size:1.02rem;
+    margin:0 0 6px;
+  }
+  .clauses p{
+    color:var(--ink-soft);
+    margin:0;
+    font-size:0.97rem;
+  }
+
+  /* Definition / types grid */
+  .types{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:8px;
+  }
+  @media (max-width:760px){ .types{ grid-template-columns:1fr; } }
+  .types .type-card{
+    background:var(--paper-2);
+    padding:22px 20px;
+  }
+  .types .type-card.active{
+    background:var(--ink);
+    color:var(--paper-2);
+  }
+  .types .type-card.active h3, .types .type-card.active .tag{
+    color:var(--paper-2);
+  }
+  .types .tag{
+    font-family:var(--mono);
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--gray);
+  }
+  .types h3{
+    font-family:var(--serif-display);
+    font-size:1.1rem;
+    font-weight:600;
+    margin:8px 0 8px;
+  }
+  .types p{
+    font-size:0.9rem;
+    color:var(--gray);
+    margin:0;
+  }
+  .types .type-card.active p{ color:#cfd6de; }
+
+  /* Exhibit / demo */
+  .exhibit-wrap{
+    border:1px solid var(--line);
+    background:var(--paper-2);
+    padding:4vh 4vw;
+    position:relative;
+  }
+  .exhibit-tag{
+    position:absolute;
+    top:-1px; left:-1px;
+    background:var(--oxblood);
+    color:var(--paper-2);
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    padding:5px 12px;
+  }
+  .demo-card{
+    background:#ffffff;
+    border-radius:6px;
+    border:1px solid #ddd6c4;
+    padding:1.5rem;
+    width:380px;
+    max-width:100%;
+    margin:24px auto 0;
+    box-shadow:0 2px 10px rgba(27,42,65,0.08);
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .demo-card h4{
+    font-weight:600;
+    font-size:16px;
+    margin:0 0 4px;
+    color:#1a1a1a;
+    font-family:inherit;
+  }
+  .demo-sub{ font-size:13px; color:#666; margin:0 0 16px; }
+  .terms-box{
+    height:140px;
+    overflow-y:auto;
+    border:1px solid #ddd;
+    border-radius:6px;
+    padding:10px 12px;
+    font-size:13px;
+    color:#555;
+    line-height:1.6;
+    margin-bottom:16px;
+    background:#fafafa;
+  }
+  .terms-box p{ margin:0 0 8px; }
+  .terms-box p:last-child{ margin-bottom:0; }
+  .terms-box strong{ font-weight:600; color:#1a1a1a; }
+  .agree-row{
+    display:flex; align-items:flex-start; gap:8px;
+    font-size:13px; color:#555; margin-bottom:16px; cursor:pointer;
+  }
+  .agree-row input{ margin-top:2px; }
+  .agree-row a{ color:#185fa5; text-decoration:none; }
+  #submitBtn{
+    width:100%; padding:10px; font-size:14px; font-weight:600;
+    border-radius:6px; border:none; background:#1a1a1a; color:#fff;
+    cursor:not-allowed; opacity:0.5; transition:opacity 0.15s ease;
+    font-family:inherit;
+  }
+  #submitBtn:not(:disabled){ cursor:pointer; opacity:1; }
+  #submitBtn:not(:disabled):hover{ background:#333; }
+  #status{ font-size:12px; color:#999; margin:10px 0 0; text-align:center; }
+  #status.success{ color:#1a8754; font-weight:600; }
+
+  .exhibit-caption{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--gray);
+    text-align:center;
+    margin-top:18px;
+  }
+
+  /* Footer */
+  footer{
+    border-top:1px solid var(--line);
+    padding:6vh 6vw;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--gray);
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  footer strong{ color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="letterhead">
+<span><strong>Legal Aspects of Business</strong> — Course Module</span>
+<span>Group <strong>D5</strong></span>
+</div>
+<section class="hero">
+<p class="eyebrow">Case Study · E-Contracts</p>
+<h1>Legal Aspects<br/>of Business</h1>
+<p class="sub">An examination of clickwrap agreements: how a checkbox becomes a binding contract.</p>
+<div class="docket">
+<div><span>Prepared by</span><strong>Group D5</strong></div>
+<div><span>Subject</span><strong>Clickwrap Contracts</strong></div>
+<div><span>Reference</span><strong>Indian Contract Act, 1872 · IT Act, 2000</strong></div>
+</div>
+<svg aria-label="Group D5 seal" class="seal" role="img" viewbox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<path d="M 20,60 A 40,40 0 1 1 100,60" fill="none" id="sealArc"></path>
+</defs>
+<circle cx="60" cy="60" fill="none" r="55" stroke="#7A2E2E" stroke-width="1.5"></circle>
+<circle cx="60" cy="60" fill="none" r="46" stroke="#7A2E2E" stroke-width="1"></circle>
+<text fill="#7A2E2E" font-family="IBM Plex Mono" font-size="9" letter-spacing="2">
+<textpath href="#sealArc" startoffset="2">GROUP D5 · EXHIBIT ON RECORD</textpath>
+</text>
+<text fill="#7A2E2E" font-family="Spectral" font-size="15" font-style="italic" text-anchor="middle" x="60" y="66">§ D5</text>
+</svg>
+</section>
+
+
+<section class="article" id="exhibit">
+<div class="article-head">
+<span class="article-num">ART. I</span>
+<h2>Exhibit A — live demonstration</h2>
+</div>
+<p class="lede">A working clickwrap flow. The "Create account" action stays disabled until affirmative consent is given, and the interaction is timestamped on acceptance.</p>
+<div class="exhibit-wrap">
+<span class="exhibit-tag">Exhibit A</span>
+<div class="demo-card">
+<h4>Create your account</h4>
+<p class="demo-sub">StudyBuddy App — Terms of Service</p>
+<div class="terms-box">
+<p><strong>1. Acceptance of terms.</strong> By creating an account, you agree to be bound by these terms.</p>
+<p><strong>2. Use of service.</strong> StudyBuddy App is provided for personal, educational use only.</p>
+<p><strong>3. User content.</strong> You retain ownership of content you submit but grant us a license to display it within the app.</p>
+<p><strong>4. Termination.</strong> We may suspend accounts that violate these terms.</p>
+<p><strong>5. Governing law.</strong> These terms are governed by the laws of your local jurisdiction.</p>
+</div>
+<label class="agree-row">
+<input id="agree" type="checkbox"/>
+<span>I have read and agree to the <a href="#" onclick="return false;">Terms of Service</a> and <a href="#" onclick="return false;">Privacy Policy</a></span>
+</label>
+<button disabled="" id="submitBtn">Create account</button>
+<p id="status">Check the box to enable the button</p>
+</div>
+<p class="exhibit-caption">Fig. 1 — Simulated clickwrap flow, Group D5</p>
+</div>
+</section>
+<footer>
+<span>Legal Aspects of Business · Clickwrap Contracts</span>
+<span>Presented by <strong>Group D5</strong></span>
+</footer>
+<script>
+  // Scroll reveal for articles
+  const articles = document.querySelectorAll('.article');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('in-view');
+    });
+  }, { threshold: 0.12 });
+  articles.forEach(a => observer.observe(a));
+
+  // Clickwrap demo logic
+  const checkbox = document.getElementById('agree');
+  const btn = document.getElementById('submitBtn');
+  const status = document.getElementById('status');
+
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      btn.disabled = false;
+      status.textContent = 'Ready to submit';
+      status.classList.remove('success');
+    } else {
+      btn.disabled = true;
+      status.textContent = 'Check the box to enable the button';
+      status.classList.remove('success');
+    }
+  });
+
+  btn.addEventListener('click', () => {
+    if (!btn.disabled) {
+      status.textContent = 'Bhai pehle contract padh le 😂 See you in court';
+      status.classList.add('success');
+    }
+  });
+</script>
+</body>
+</html>
